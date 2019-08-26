@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios'
 import styled from 'styled-components';
-import { MainButton, TopButton } from "./Styled/Styled";
+import { MainButton, NavButton, FormDiv } from "./Styled/Styled";
 
 
 
@@ -41,19 +41,27 @@ function Login () {
         <>
         <h2>Log in to see and save favorite quotes</h2>
             <form onSubmit={login}>
+            <FormDiv>
+
+                <label for='email'>Email
                 <input
                     type='email'
                     name='email'
                     value={creds.email}
                     onChange={handleChange}
                     />
+                </label>
+                <label for='password'>Password
                 <input 
                     type='password'
                     name='password'
                     value={creds.password}
                     onChange={handleChange}
                     />
+                </label>
                 <MainButton>Log In</MainButton>
+                </FormDiv>
+
             </form>
         </>
     );

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { MainButton, TopButton } from "./Styled/Styled";
+import { MainButton, NavButton, FormDiv } from "./Styled/Styled";
 
 export default function SignUpForm () {
 
@@ -38,19 +38,25 @@ export default function SignUpForm () {
             <h1>Sign up to create your account</h1>
 
             <form onSubmit={signup}>
-                <input
-                    type='email'
-                    name='email'
-                    value={newCreds.email}
-                    onChange={handleChange}
-                    />
+                <FormDiv>
+                    <label for='email'>Email
+                    <input
+                        type='email'
+                        name='email'
+                        value={newCreds.email}
+                        onChange={handleChange}
+                        />
+                    </label>
+                <label for='password'>Password
                 <input 
                     type='password'
                     name='password'
                     value={newCreds.password}
                     onChange={handleChange}
                     />
-                <TopButton>Sign Up</TopButton>
+                </label>
+                <NavButton>Sign Up</NavButton>
+                </FormDiv>
             </form>
 
 

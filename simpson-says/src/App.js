@@ -7,15 +7,15 @@ import SignupForm from './Components/SignupForm'
 import QuoteList from './Components/QuoteList'
 import SearchForm from './Components/SearchForm'
 import PrivateRoute from './Utils/PrivateRoute'
+import HeaderNav from './Components/HeaderNav'
 
 function App() {
   return (
     <div className="App">
-      {/* <PrivateRoute exact path='/' component={QuoteList} /> */}
-      <Link to="/signup">Sign Up</Link>
-      <Link to="/login">Login</Link>
+      {/* <PrivateRoute exact path='/protected' component={QuoteList} /> */}
+      <Route path="/" render={(props)=><HeaderNav {...props}/>} />
       <Route path='/signup' component={SignupForm} />
-      <Route path='/login' component={Login} />
+      <Route exact path='/' component={Login} />
       
     </div> 
   );
