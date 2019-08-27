@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { MainButton, NavButton, FormDiv } from "./Styled/Styled";
+import { MainButton, NavButton, FormDiv, H2 } from "./Styled/Styled";
 
-export default function SignUpForm () {
+export default function SignUpForm (props) {
 
-    const [newCreds, setNewCreds] = useState({ email: '', password: '' })
+    const [newCreds, setNewCreds] = useState({ username: '', password: '' })
 
     const handleChange = e => {
         setNewCreds({ ...newCreds, [e.target.name]: e.target.value });
@@ -14,20 +14,20 @@ export default function SignUpForm () {
     function signup(e) {
         e.preventDefault();
         axios
-            .post('signup-endpoint', newCreds)
+            .post('https://simpsons-says-nodejs.herokuapp.com/api/register/', newCreds)
             .then(res => {
                 console.log(res);
                 // localStorage.setItem('token', res.data.payload);
                 // setCreds({
-                //     email: '',
+                //     username: '',
                 //     password: ''
                 // });
-                // props.history.push("/protected");
+                props.history.push("/");
             })
             .catch(err => {
                 console.log(err.response.data.error);
                 // setCreds({
-                //     email: '',
+                //     username: '',
                 //     password: ''
                 // })
             });
@@ -35,15 +35,15 @@ export default function SignUpForm () {
 
     return (
         <div>
-            <h1>Sign up to create your account</h1>
+            <H2>Sign up to create your account</H2>
 
             <form onSubmit={signup}>
                 <FormDiv>
-                    <label for='email'>Email
+                    <label for='username'>Username
                     <input
-                        type='email'
-                        name='email'
-                        value={newCreds.email}
+                        type='username'
+                        name='username'
+                        value={newCreds.username}
                         onChange={handleChange}
                         />
                     </label>
@@ -55,7 +55,7 @@ export default function SignUpForm () {
                     onChange={handleChange}
                     />
                 </label>
-                <NavButton>Sign Up</NavButton>
+                <MainButton>Sign Up</MainButton>
                 </FormDiv>
             </form>
 

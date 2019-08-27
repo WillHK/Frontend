@@ -12,8 +12,8 @@ import HeaderNav from './Components/HeaderNav'
 function App() {
   return (
     <div className="App">
-      {/* <PrivateRoute exact path='/protected' component={QuoteList} /> */}
       <Route path="/" render={(props)=><HeaderNav {...props}/>} />
+      <PrivateRoute exact path='/protected' component={QuoteList} />
       <Route path='/signup' component={SignupForm} />
       <Route exact path='/' component={Login} />
       

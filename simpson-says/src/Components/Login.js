@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 import axios from 'axios'
 import styled from 'styled-components';
-import { MainButton, NavButton, FormDiv } from "./Styled/Styled";
+import { MainButton, NavButton, FormDiv, H2, LoginMain, ImageSize } from "./Styled/Styled";
+// import SimpsonsFam from '../images/SimpsonsFam.png'
 
 
 
-function Login () {
+function Login (props) {
 
-    const [creds, setCreds] = useState({ email: '', password: '' })
+    const [creds, setCreds] = useState({ username: '', password: '' })
 
     const handleChange = e => {
         setCreds({ ...creds, [e.target.name]: e.target.value });
@@ -16,22 +17,22 @@ function Login () {
     function login(e) {
         e.preventDefault();
         axios
-            .post('endpoint', creds)
+            .post('https://simpsons-says-nodejs.herokuapp.com/api/login', creds)
             .then(res => {
                 console.log(res);
-                // localStorage.setItem('token', res.data.payload);
+                localStorage.setItem('token', res.data.token);
                 // setLoginStatus("Success!");
-                // setCreds({
-                //     email: '',
-                //     password: ''
-                // });
-                // props.history.push("/protected");
+                setCreds({
+                    username: '',
+                    password: ''
+                });
+                props.history.push("/protected");
             })
             .catch(err => {
                 console.log(err.response.data.error);
                 // setLoginStatus(`${err.response.data.error}`);
                 // setCreds({
-                //     email: '',
+                //     username: '',
                 //     password: ''
                 // })
             });
@@ -39,15 +40,16 @@ function Login () {
 
     return (
         <>
-        <h2>Log in to see and save favorite quotes</h2>
+        <H2>Log in to see and save your favorite Simpsons quotes</H2>
+        <LoginMain>
             <form onSubmit={login}>
             <FormDiv>
 
-                <label for='email'>Email
+                <label for='username'>Username
                 <input
-                    type='email'
-                    name='email'
-                    value={creds.email}
+                    type='username'
+                    name='username'
+                    value={creds.username}
                     onChange={handleChange}
                     />
                 </label>
@@ -63,8 +65,12 @@ function Login () {
                 </FormDiv>
 
             </form>
+            
+            <img src = "https://ucced7f4c0418032354726f64169.previews.dropboxusercontent.com/p/thumb/AAhPnHs6V3IfPpVn7yKxWxvv25HfhX6jCxFhWDlM9XyPGSQV-3o2oSpT6HKTE8xQcBubQiJHPsmXxKWo5ORnrWPh0H2VrEKuwHThRJL4kao3TcICb6iXKmOnVEBH2VpXxmpX0bqOv6CFUbki9jDwuqEFSOdhTSEU89ZvvzJEz-Rscwn7NXYUAiHzv9KKcnAiA_8A4no7iPc8BhRJUPNwBm8PdiP1phVBGq2CnWMr34V2j97_MlwzCjjUxJnFuumLXZTg7udajMUzAlBO_fR47FpzApI715hfCHI7xDalaoUsJNfW2aPudxKcGegK-txrXuYjqrAOisJObPKhUW3hPmDVDfN7GK1NyJgfTBZKeZ0ZHxq-M2gvDyKcOBBbNN17-GkJTBz8JgmsalhUot44mQkb/p.png?size=1024x768&size_mode=3"/>
+            </LoginMain>
         </>
     );
+
 }
 
 export default Login

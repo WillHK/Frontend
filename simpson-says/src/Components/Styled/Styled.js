@@ -1,4 +1,3 @@
-import React from "react";
 import styled from 'styled-components';
 
 export const NavButton = styled.button`
@@ -52,8 +51,27 @@ export const FormDiv = styled.div`
 // width: 10rem;
 display: flex;
 flex-direction: column;
-align-items: center;
+align-items: left;
 padding: 30px;
 `
+export const H2 = styled.h2`
+font-family: "Gloria Hallelujah";
+font-weight: bolder;
+font-size: 1.20rem;
+`
 
+export const QuoteCard = styled.div`
+background-color: #ffffff;
+width: 15rem;
+height: 15rem;
+padding-top: 20px;
+margin: 20px;
+border-radius: 4px;
+box-shadow: 3px 5px 5px #888888;
+`
+export const LoginMain = styled.div`
+display:flex;`
 
+export const ImageSize = styled.img`
+width:50%;
+height:50%;`

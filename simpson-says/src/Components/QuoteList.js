@@ -1,44 +1,43 @@
-import { Route, Link } from 'react-router-dom';
+// import { Route, Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import axiosWithAuth from '../Utils/axiosWithAuth'
+import { axiosWithAuth } from '../Utils/axiosWithAuth'
 import Quote from './Quote'
 
-// const QuoteList = props =>{
-//     const [quote, setQuote] = useState([])
+const QuoteList = props =>{
+    const [quotes, setQuotes] = useState([])
     
-//     useEffect(() => {
-//       axiosWithAuth()
-//           .get("URL GOES HERE")
-//           .then(response => {
-//               const info = response.data; //check this after data url is rcvd
-//             setQuote(info);
-//           })
-//           .catch(error => {
-//             console.log('Server Error', error);
-//           });
+    useEffect(() => {
+      axiosWithAuth()
+          .get("https://simpsons-says-nodejs.herokuapp.com/api/quotes")
+          .then(response => {
+              console.log('response from get quote', response);
+              const info = response.data.quotes; 
+              setQuotes(info);
+          })
+          .catch(error => {
+            console.log('Server Error', error);
+          });
       
-//     }, [])
+    }, [])
 
 
-// return(
+return(
+        <container>
+          {quotes.map(quote=>{
+            return(
+                <Quote 
+                key={quote.id}
+                line={quote.quote} 
+                episode={quote.episode}
+                character={quote.character}
+                />
+            );
+        })}
+            </container> 
+    )
+};
 
-
-//     //     ///////////
-//     //     // <container>
-//     //     {/* {info.map(quote=>{
-//     //         return(
-//     //             <Quote
-//     //             line={quote.line} //these will need to be changed when data is rcvd
-//     //             url={quote.url}
-        
-//     //             />
-//     //         );
-//     //     })}
-//     //         </container> */}
-//     // )
-// };
-
-// export default QuoteList;
+export default QuoteList;
 
 
 
