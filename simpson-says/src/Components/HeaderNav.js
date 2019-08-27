@@ -15,7 +15,9 @@ export default function HeaderNav(props) {
         <HeaderButtonContainer className="nav-bar">
             {!localStorage.token && <Link to="/"> <NavButton>Login</NavButton></Link>}
             {!localStorage.token && <Link to="/signup"> <NavButton>Sign Up</NavButton></Link>}
-            {localStorage.token && <Link to="/protected"><NavButton>Quotes</NavButton></Link>}
+            {localStorage.token && <Link to="/protected"><NavButton>Home</NavButton></Link>}
+            {localStorage.token && <Link to="/protected/search"><NavButton>Search Quotes</NavButton></Link>}
+            {localStorage.token && <Link to="/protected/profile"><NavButton>Profile</NavButton></Link>}
             <Link to="/about"><NavButton>About Us</NavButton></Link>
             {localStorage.token && <Link to="/"> <NavButton onClick={logout}>Logout</NavButton></Link>}
         </HeaderButtonContainer>

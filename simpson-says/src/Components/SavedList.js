@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { axiosWithAuth } from '../Utils/axiosWithAuth';
+import {H2} from './Styled/Styled'
+
+
+import Quote from './Quote'
 
 
 export default class SavedList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        favoriteQuotes: [],
+        username:"",
+        favorites: [],
     }
   }
 
@@ -21,8 +26,11 @@ export default class SavedList extends Component {
       .then(res => {
           console.log('response from get saved quotes: ', res);
         // this.setState({
-        //   favoriteQuotes: res.data.favoriteQuotes //talk to be about savedQuotes endpoint
+        //   user: res.data.username,
+  
+        //   favorites: res.data.favorites //talk to be about savedQuotes endpoint
         // });
+        
       })
       .catch(err => console.log(err.response));
   };
@@ -30,8 +38,9 @@ export default class SavedList extends Component {
   render() {
     return (
       <div className="saved-list">
-         <h3>Saved Quotes:</h3>
-         {this.props.list.map(quote => {
+         <H2>Hello, {this.state.username}!</H2>
+         <H2>Saved Quotes:</H2>
+         {this.state.favorites.map(quote => {
           return (
             <Quote 
                 key={quote.id}
@@ -41,9 +50,6 @@ export default class SavedList extends Component {
             />
           );
         })}
-        <div className="home-button">
-          <Link to="/">Home</Link>
-        </div>
       </div>
     );
   }

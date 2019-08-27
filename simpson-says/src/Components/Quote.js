@@ -1,6 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
-import { MainButton, NavButton, FormDiv, H2, QuoteCard } from "./Styled/Styled";
+import { H2, QuoteCard } from "./Styled/Styled";
 import { axiosWithAuth } from '../Utils/axiosWithAuth';
 
 
@@ -37,8 +37,8 @@ const Quote = props => {
                 <H2>{props.character}:</H2>                
                 <H2>{`"${props.line}"`}</H2>
                 <H2> Episode: {props.episode}</H2>
-                <div onClick={this.saveQuote}>Save</div>
-                <div onClick={this.deleteQuote}>Delete</div>
+                <div onClick={saveQuote}>Save</div>
+                <img onClick={deleteQuote} src='https://static.simpsonswiki.com/images/b/bb/Trash_Can_Tapped_Out.png'/>
             </QuoteCard>
             </div>
     )
