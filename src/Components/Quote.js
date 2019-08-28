@@ -6,10 +6,15 @@ import { axiosWithAuth } from '../Utils/axiosWithAuth';
 
 const Quote = props => {
 
+    // let body = {
+    //     quote_id: ''// id of quote you want to save
+    //     user_favorites: ''// user ID from local storage
+    // }
+
     function saveQuote(){
         console.log('quote saved!');
-        // axiosWithAuth()
-        //     .post()
+        axiosWithAuth()
+            // .post('https://simpsons-says-nodejs.herokuapp.com/api/user/quotes', body)
         //     .then(res => {
 
         //     })

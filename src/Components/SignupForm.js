@@ -5,7 +5,12 @@ import { MainButton, FormDiv, H2, Option, LoginMain, ImageContainer, Img, Select
 
 export default function SignUpForm (props) {
 
-    const [newCreds, setNewCreds] = useState({ username: '', email: '', password: '', favChar: '' });
+    const [newCreds, setNewCreds] = useState({ 
+        username: '', 
+        password: '', 
+        favChar: '',
+        
+    });
     const [signupStatus, setSignupStatus] = useState('');
 
     const handleChange = e => {
@@ -19,7 +24,7 @@ export default function SignUpForm (props) {
         axios
             .post('https://simpsons-says-nodejs.herokuapp.com/api/register/', newCreds)
             .then(res => {
-                console.log(res);
+                console.log("response from signup call: ", res);
                 // localStorage.setItem('token', res.data.payload);
                 // setCreds({
                 //     username: '',
@@ -51,14 +56,6 @@ export default function SignUpForm (props) {
                         onChange={handleChange}
                         />
                     </label>
-                <label for='email'>Email
-                <input 
-                    type='email'
-                    name='email'
-                    value={newCreds.email}
-                    onChange={handleChange}
-                    />
-                </label>
                 <label for='password'>Password
                 <input 
                     type='password'

@@ -23,6 +23,7 @@ function Login (props) {
             .then(res => {
                 console.log(res);
                 localStorage.setItem('token', res.data.token);
+                localStorage.setItem('userid', res.data.userid); // this may not be called userid -- check with backend or check console for res
                 setLoginStatus("Success!");
                 setCreds({
                     username: '',
@@ -71,7 +72,7 @@ function Login (props) {
 
             </form>
             
-            <ImageSize src = "https://i.ibb.co/Mf1vRQB/simpsons-PNG67.png" alt="simpsons family picture"/>
+            <img src = "https://i.ibb.co/Mf1vRQB/simpsons-PNG67.png" alt="simpsons family picture"/>
             </LoginMain>
         </>
     );

@@ -70,7 +70,9 @@ border-radius: 4px;
 box-shadow: 3px 5px 5px #888888;
 `
 export const LoginMain = styled.div`
-display:flex;`
+display:flex;
+justify-content: space-evenly;
+align-items: center;`
 
 export const ImageSize = styled.img`
 width:20%;

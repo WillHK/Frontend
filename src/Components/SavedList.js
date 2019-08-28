@@ -20,9 +20,11 @@ export default class SavedList extends Component {
     this.getData();
   }
 
+  // userid = localStorage.userid;
+
   getData = () => {
     axiosWithAuth()
-      .get('https://simpsons-says-nodejs.herokuapp.com/api/login')
+      .get(`https://simpsons-says-nodejs.herokuapp.com/api/users`) // ${userid}
       .then(res => {
           console.log('response from get saved quotes: ', res);
         // this.setState({
