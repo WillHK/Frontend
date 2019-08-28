@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {NavButton, H2} from './Styled/Styled'
+import React, {useState, useEffect} from 'react';
+import {NavButton, H2, H1, Option, MainButton, ImageSize} from './Styled/Styled'
 
 import { axiosWithAuth } from '../Utils/axiosWithAuth';
 
@@ -20,7 +20,7 @@ export default function Profile (props) {
         console.log('toggling! ', editing);
       };
 
-    const getUserData = () => {
+      useEffect(() => {
         axiosWithAuth()
           .get('https://simpsons-says-nodejs.herokuapp.com/api/login')
           .then(res => {
@@ -28,24 +28,122 @@ export default function Profile (props) {
               setUser(res.data)
           })
           .catch(err => console.log(err.response));
-      };
+      },[])
 
-      if(editing) {
+      let avatar = "";
+      switch (user.favChar) {
+        case "Homer":
+          avatar = "https://i.ibb.co/BKDQTZ1/simpsons-PNG15.png";
+          break;
+        case "Marge":
+          avatar = "https://i.ibb.co/DVBD5bH/simpsons-PNG56.png";
+          break;
+        case "Lisa":
+          avatar = "https://i.ibb.co/P9XbT7w/simpsons-PNG1.png";
+          break;
+        case "Bart":
+          avatar = "https://i.ibb.co/KD5y91L/simpsons-PNG42.png";
+          break;
+        case "Maggie":
+          avatar = "https://i.ibb.co/Xb1ffWY/simpsons-PNG55.png";
+          break;
+        case "Grandpa":
+          avatar = "https://i.ibb.co/P17mrTB/simpsons-PNG69.png";
+          break;
+        case "Santa's Little Helper":
+          avatar = "https://vignette.wikia.nocookie.net/simpsons/images/2/2c/Santa%27s_Little_Helper.png/revision/latest?cb=20180311074656";
+          break;
+        default:
+          avatar = "https://i.ibb.co/gwh6C5f/simpsons-PNG84.png";
+      }
+
+      const handleChange = e => {
+        setUser({ ...user, [e.target.name]: e.target.value });
+        console.log('user to update: ', user);
+    }
+
+    function updateUser(e) {
+        console.log(`updated creds sent: `, user);
+        e.preventDefault();
+        axiosWithAuth()
+            .put('https://simpsons-says-nodejs.herokuapp.com/api/login/', user)
+            .then(res => {
+                console.log(res);
+                // localStorage.setItem('token', res.data.payload);
+                // setUser({
+                //     username: '',
+                //     password: '',
+                //     email: "",
+                //     favChar: "",
+                // })
+                props.history.push("/");
+            })
+            .catch(err => {
+                console.log(err);
+                // setSignupStatus(`${err}`);
+                setUser({
+                    username: '',
+                    password: '',
+                    email: "",
+                    favChar: "",
+                })
+            });
+    }
+
+      if(!editing) {
           return (
         <div>
-            <h1>Hello from the profile!</h1>
-            <h2>Username: {user.username}</h2>
-            <h2>Email: {user.email}</h2>
-            <h2>Password: {user.password}</h2>
-            <button onClick={toggleMode}>Edit</button>
+            <H1>Your Account</H1>
+            <MainButton onClick={toggleMode}>Edit Details</MainButton>
+            <H2>Username: {user.username}</H2>
+            <H2>Email: {user.email}</H2>
+            <H2>Favorite Simpson: {user.favChar}</H2>
+            <ImageSize src = {avatar} />
         </div>
     )} 
     else {
         return(
             <div>
-                <form>
-                <p>this p will be replaced with inputs</p>
-                <button onClick={toggleMode}>Save</button>
+                <H1>Edit account details</H1>
+                <form onSubmit={updateUser}>
+                
+                <label for='username'>Username
+                    <input
+                        type='username'
+                        name='username'
+                        value={user.username}
+                        onChange={handleChange}
+                        />
+                    </label>
+                <label for='email'>Email
+                <input 
+                    type='email'
+                    name='email'
+                    value={user.email}
+                    onChange={handleChange}
+                    />
+                </label>
+                <label for='password'>Password
+                <input 
+                    type='password'
+                    name='password'
+                    value={user.password}
+                    onChange={handleChange}
+                    />
+                </label>
+                <label for='favChar'>Favorite Simpson
+                <select name='favChar' onChange={handleChange} value={user.favChar}>
+                <Option value="Homer">Homer</Option>
+                <Option value="Marge">Marge</Option>
+                <Option value="Lisa">Lisa</Option>
+                <Option value="Bart">Bart</Option>
+                <Option value="Maggie">Maggie</Option>
+                <Option value="Grandpa">Grandpa</Option>
+                <Option value="Santa's Little Helper">Santa's Little Helper</Option>
+                  
+                </select>
+                </label> 
+                <MainButton onClick={toggleMode}>Save</MainButton>
                 </form>
             </div>
         )

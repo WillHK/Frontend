@@ -75,7 +75,7 @@ export default function SignUpForm (props) {
                 <option value="Bart">Bart</option>
                 <option value="Maggie">Maggie</option>
                 <option value="Grandpa">Grandpa Simpson</option>
-                <option value="SLH">Santa's Little Helper</option>
+                <option value="Santa's Little Helper">Santa's Little Helper</option>
                   
                     </select>
                     
