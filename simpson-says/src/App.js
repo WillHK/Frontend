@@ -8,12 +8,16 @@ import QuoteList from './Components/QuoteList'
 import SearchForm from './Components/SearchForm'
 import PrivateRoute from './Utils/PrivateRoute'
 import HeaderNav from './Components/HeaderNav'
+import SavedList from './Components/SavedList'
+import Profile from './Components/Profile'
 
 function App() {
   return (
     <div className="App">
-      {/* <PrivateRoute exact path='/protected' component={QuoteList} /> */}
       <Route path="/" render={(props)=><HeaderNav {...props}/>} />
+      <PrivateRoute exact path='/protected' component={SavedList}/>
+      <PrivateRoute path='/protected/search' component={QuoteList} />
+      <PrivateRoute path='/protected/profile' component={Profile} />
       <Route path='/signup' component={SignupForm} />
       <Route exact path='/' component={Login} />
       

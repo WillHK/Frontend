@@ -1,52 +1,64 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { MainButton, NavButton, FormDiv } from "./Styled/Styled";
+import { MainButton, FormDiv, H2, Option, LoginMain, ImageContainer, Img } from "./Styled/Styled";
 
-export default function SignUpForm () {
+export default function SignUpForm (props) {
 
-    const [newCreds, setNewCreds] = useState({ email: '', password: '' })
+    const [newCreds, setNewCreds] = useState({ username: '', email: '', password: '', favChar: '' });
+    const [signupStatus, setSignupStatus] = useState('');
 
     const handleChange = e => {
         setNewCreds({ ...newCreds, [e.target.name]: e.target.value });
+        console.log('newCreds: ', newCreds)
     }
 
     function signup(e) {
+        console.log(`newCreds sent to signup: `, newCreds);
         e.preventDefault();
         axios
-            .post('signup-endpoint', newCreds)
+            .post('https://simpsons-says-nodejs.herokuapp.com/api/register/', newCreds)
             .then(res => {
                 console.log(res);
                 // localStorage.setItem('token', res.data.payload);
                 // setCreds({
-                //     email: '',
+                //     username: '',
                 //     password: ''
                 // });
-                // props.history.push("/protected");
+                props.history.push("/");
             })
             .catch(err => {
-                console.log(err.response.data.error);
-                // setCreds({
-                //     email: '',
-                //     password: ''
-                // })
+                console.log(err);
+                setSignupStatus(`${err}`);
+                setNewCreds({
+                    username: '',
+                    password: ''
+                })
             });
     }
 
     return (
         <div>
-            <h1>Sign up to create your account</h1>
-
+            <H2>Sign up to create your account</H2>
+            <LoginMain>
             <form onSubmit={signup}>
                 <FormDiv>
-                    <label for='email'>Email
+                    <label for='username'>Username
                     <input
-                        type='email'
-                        name='email'
-                        value={newCreds.email}
+                        type='username'
+                        name='username'
+                        value={newCreds.username}
                         onChange={handleChange}
                         />
                     </label>
+                <label for='email'>Email
+                <input 
+                    type='email'
+                    name='email'
+                    value={newCreds.email}
+                    onChange={handleChange}
+                    />
+                </label>
                 <label for='password'>Password
                 <input 
                     type='password'
@@ -55,9 +67,26 @@ export default function SignUpForm () {
                     onChange={handleChange}
                     />
                 </label>
-                <NavButton>Sign Up</NavButton>
+                <label for='favChar'>Favorite Simpson
+                <select name='favChar' onChange={handleChange} value={newCreds.favChar}>
+                <Option value="Homer">Homer</Option>
+                <option value="Marge">Marge</option>
+                <option value="Lisa">Lisa</option>
+                <option value="Bart">Bart</option>
+                <option value="Maggie">Maggie</option>
+                <option value="Grandpa">Grandpa Simpson</option>
+                <option value="SLH">Santa's Little Helper</option>
+                  
+                    </select>
+                    
+                </label> 
+                <MainButton>Sign Up</MainButton>
+                {{signupStatus} && <p>{signupStatus}</p>}
                 </FormDiv>
             </form>
+            <Img src = "https://i.ibb.co/bL1LSMk/simpsons-PNG63.png" alt="simpson family" />
+
+            </LoginMain>
 
 
         </div>

@@ -19,7 +19,18 @@ input, label{
 }
 
 
-/* body{
-  background-image: linear-gradient(to bottom right, #71d1fe, #ffffff);
+body{
+  background: radial-gradient(closest-side, #ffffff, #71d1fe);
   background-repeat: no-repeat;
-} */
+  height: 100vh;
+}
+img{
+  width: 30%;
+  height:30%;
+  /* position:absolute; */
+  padding-left: 10rem;
+}
+p{
+  margin: 0;
+  padding-top:5px;
+}
