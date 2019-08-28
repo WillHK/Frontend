@@ -73,8 +73,8 @@ export const LoginMain = styled.div`
 display:flex;`
 
 export const ImageSize = styled.img`
-width:50%;
-height:50%;
+width:20%;
+height:20%;
 `
 
 export const P = styled.p`
@@ -82,10 +82,14 @@ font-family: "Gloria Hallelujah";
 
 `
 export const Img = styled.img`
-width: 50%;
-height: 50%
+width: 600px;
 `
 
 export const Option = styled.option`
+font-family: "Gloria Hallelujah" !important;
+`
+export const H1 = styled.h2`
 font-family: "Gloria Hallelujah";
+font-weight: bolder;
+font-size: 2rem;
 `

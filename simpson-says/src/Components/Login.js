@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
-import { MainButton, FormDiv, H2, LoginMain, P } from "./Styled/Styled";
+import { MainButton, FormDiv, H2, LoginMain, P, Img, ImageSize } from "./Styled/Styled";
 // import SimpsonsFam from '../images/SimpsonsFam.png'
 
 
@@ -71,7 +71,7 @@ function Login (props) {
 
             </form>
             
-            <img src = "https://ucced7f4c0418032354726f64169.previews.dropboxusercontent.com/p/thumb/AAhPnHs6V3IfPpVn7yKxWxvv25HfhX6jCxFhWDlM9XyPGSQV-3o2oSpT6HKTE8xQcBubQiJHPsmXxKWo5ORnrWPh0H2VrEKuwHThRJL4kao3TcICb6iXKmOnVEBH2VpXxmpX0bqOv6CFUbki9jDwuqEFSOdhTSEU89ZvvzJEz-Rscwn7NXYUAiHzv9KKcnAiA_8A4no7iPc8BhRJUPNwBm8PdiP1phVBGq2CnWMr34V2j97_MlwzCjjUxJnFuumLXZTg7udajMUzAlBO_fR47FpzApI715hfCHI7xDalaoUsJNfW2aPudxKcGegK-txrXuYjqrAOisJObPKhUW3hPmDVDfN7GK1NyJgfTBZKeZ0ZHxq-M2gvDyKcOBBbNN17-GkJTBz8JgmsalhUot44mQkb/p.png?size=1024x768&size_mode=3" alt="simpsons sign"/>
+            <ImageSize src = "https://i.ibb.co/Mf1vRQB/simpsons-PNG67.png" alt="simpsons family picture"/>
             </LoginMain>
         </>
     );
