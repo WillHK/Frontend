@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { axiosWithAuth } from '../Utils/axiosWithAuth'
 import Quote from './Quote'
-import { MainButton } from "./Styled/Styled";
+import { MainButton, ProfileEdit, H2 } from "./Styled/Styled";
 
 
 const QuoteList = props => {
@@ -38,12 +38,15 @@ const QuoteList = props => {
 
     return (
         <container>
+            <H2> Search for a quote </H2>
             <form onSubmit={search}>
+            <ProfileEdit>
                 <input
                     type='text'
                     onChange={handleChange}
                 />
-                <MainButton>Search</MainButton>
+            <MainButton>Search</MainButton>
+            </ProfileEdit>
             </form>
 
 
