@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {NavButton, H2, H1, Option, MainButton, ImageSize} from './Styled/Styled'
+import {NavButton, H2, H1, Option, MainButton, ImageSize, Select, ProfileEdit} from './Styled/Styled'
 
 import { axiosWithAuth } from '../Utils/axiosWithAuth';
 
@@ -104,9 +104,9 @@ export default function Profile (props) {
     else {
         return(
             <div>
-                <H1>Edit account details</H1>
+                <H1>Edit Account Details</H1>
                 <form onSubmit={updateUser}>
-                
+                <ProfileEdit>
                 <label for='username'>Username
                     <input
                         type='username'
@@ -132,7 +132,7 @@ export default function Profile (props) {
                     />
                 </label>
                 <label for='favChar'>Favorite Simpson
-                <select name='favChar' onChange={handleChange} value={user.favChar}>
+                <Select name='favChar' onChange={handleChange} value={user.favChar}>
                 <Option value="Homer">Homer</Option>
                 <Option value="Marge">Marge</Option>
                 <Option value="Lisa">Lisa</Option>
@@ -141,9 +141,10 @@ export default function Profile (props) {
                 <Option value="Grandpa">Grandpa</Option>
                 <Option value="Santa's Little Helper">Santa's Little Helper</Option>
                   
-                </select>
+                </Select>
                 </label> 
                 <MainButton onClick={toggleMode}>Save</MainButton>
+                </ProfileEdit>
                 </form>
             </div>
         )

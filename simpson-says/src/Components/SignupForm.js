@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { MainButton, FormDiv, H2, Option, LoginMain, ImageContainer, Img } from "./Styled/Styled";
+import { MainButton, FormDiv, H2, Option, LoginMain, ImageContainer, Img, Select } from "./Styled/Styled";
 
 export default function SignUpForm (props) {
 
@@ -68,8 +68,8 @@ export default function SignUpForm (props) {
                     />
                 </label>
                 <label for='favChar'>Favorite Simpson
-                <select name='favChar' onChange={handleChange} value={newCreds.favChar}>
-                <Option value="Homer">Homer</Option>
+                <Select name='favChar' onChange={handleChange} value={newCreds.favChar}>
+                <option value="Homer">Homer</option>
                 <option value="Marge">Marge</option>
                 <option value="Lisa">Lisa</option>
                 <option value="Bart">Bart</option>
@@ -77,7 +77,7 @@ export default function SignUpForm (props) {
                 <option value="Grandpa">Grandpa Simpson</option>
                 <option value="Santa's Little Helper">Santa's Little Helper</option>
                   
-                    </select>
+                    </Select>
                     
                 </label> 
                 <MainButton>Sign Up</MainButton>

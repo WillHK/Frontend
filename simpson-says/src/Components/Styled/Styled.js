@@ -93,3 +93,14 @@ font-family: "Gloria Hallelujah";
 font-weight: bolder;
 font-size: 2rem;
 `
+
+
+export const Select = styled.select`
+font-family: "Gloria Hallelujah";
+`
+export const ProfileEdit = styled.div`
+padding: 2rem;
+display:flex;
+flex-direction: column;
+justify-content: space-evenly;
+align-items: center;`
