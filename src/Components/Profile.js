@@ -10,8 +10,7 @@ export default function Profile (props) {
         username: "",
         password: "",
         favChar: "",
-        }
-    );
+        });
 
     const userid = localStorage.userid;
     
@@ -131,10 +130,10 @@ export default function Profile (props) {
                   
                 </Select>
                 </label> 
-                <MainButton type='submit' onSubmit={updateUser}>Save</MainButton>
+                <MainButton type='submit' onClick={updateUser}>Save</MainButton>
                 </ProfileEdit>
                 </form>
-                <button  type="button" onClick={toggleMode}>cancel editing</button>
+                {/* <button  type="button" onClick={toggleMode}>cancel editing</button> */}
             </div>
         )
     } 
