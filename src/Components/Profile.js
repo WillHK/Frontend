@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {NavButton, H2, H1, Option, MainButton, ImageSize, Select, ProfileEdit} from './Styled/Styled'
+import { H2, H1, Option, MainButton, Select, ProfileEdit, AvatarImg} from './Styled/Styled'
 
 import { axiosWithAuth } from '../Utils/axiosWithAuth';
 
@@ -9,10 +9,11 @@ export default function Profile (props) {
     const [user, setUser] = useState({
         username: "",
         password: "",
-        email: "",
         favChar: "",
         }
     );
+
+    const userid = localStorage.userid;
     
     const toggleMode = e => {
         e.preventDefault();
@@ -22,13 +23,16 @@ export default function Profile (props) {
 
       useEffect(() => {
         axiosWithAuth()
-          .get('https://simpsons-says-nodejs.herokuapp.com/api/login')
+          .get(`https://simpsons-says-nodejs.herokuapp.com/api/users/${userid}`)
           .then(res => {
               console.log('response from getUserData: ', res);
-              setUser(res.data)
+              setUser({
+                ...user,
+                username: res.data.user.username,
+                favChar: res.data.user.favChar})
           })
           .catch(err => console.log(err.response));
-      },[])
+      },[userid])
 
       let avatar = "";
       switch (user.favChar) {
@@ -66,28 +70,21 @@ export default function Profile (props) {
         console.log(`updated creds sent: `, user);
         e.preventDefault();
         axiosWithAuth()
-            .put('https://simpsons-says-nodejs.herokuapp.com/api/login/', user)
+            .put(`https://simpsons-says-nodejs.herokuapp.com/api/users/${userid}`, user)
             .then(res => {
-                console.log(res);
-                // localStorage.setItem('token', res.data.payload);
-                // setUser({
-                //     username: '',
-                //     password: '',
-                //     email: "",
-                //     favChar: "",
-                // })
-                props.history.push("/");
+                console.log('response from put request to update user: ', res);
+                // props.history.push("/protected");
             })
             .catch(err => {
-                console.log(err);
+                console.log('error', err);
                 // setSignupStatus(`${err}`);
                 setUser({
                     username: '',
                     password: '',
-                    email: "",
                     favChar: "",
                 })
             });
+          setEditing(false)
     }
 
       if(!editing) {
@@ -96,16 +93,15 @@ export default function Profile (props) {
             <H1>Your Account</H1>
             <MainButton onClick={toggleMode}>Edit Details</MainButton>
             <H2>Username: {user.username}</H2>
-            <H2>Email: {user.email}</H2>
             <H2>Favorite Simpson: {user.favChar}</H2>
-            <ImageSize src = {avatar} />
+            <AvatarImg src = {avatar} />
         </div>
     )} 
     else {
         return(
             <div>
                 <H1>Edit Account Details</H1>
-                <form onSubmit={updateUser}>
+                <form>
                 <ProfileEdit>
                 <label for='username'>Username
                     <input
@@ -115,14 +111,6 @@ export default function Profile (props) {
                         onChange={handleChange}
                         />
                     </label>
-                <label for='email'>Email
-                <input 
-                    type='email'
-                    name='email'
-                    value={user.email}
-                    onChange={handleChange}
-                    />
-                </label>
                 <label for='password'>Password
                 <input 
                     type='password'
@@ -143,9 +131,10 @@ export default function Profile (props) {
                   
                 </Select>
                 </label> 
-                <MainButton onClick={toggleMode}>Save</MainButton>
+                <MainButton type='submit' onSubmit={updateUser}>Save</MainButton>
                 </ProfileEdit>
                 </form>
+                <button  type="button" onClick={toggleMode}>cancel editing</button>
             </div>
         )
     } 

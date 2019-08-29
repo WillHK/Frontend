@@ -1,9 +1,8 @@
 // import { Route, Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { axiosWithAuth } from '../Utils/axiosWithAuth';
 import Quote from './Quote';
-import { MainButton, ProfileEdit, H2 } from "./Styled/Styled";
+import { MainButton, ProfileEdit, H2, CardStyle } from "./Styled/Styled";
 
 
 const QuoteList = props => {
@@ -13,32 +12,31 @@ const QuoteList = props => {
     const handleChange = e => {
         return (
             //    console.log(`target value`, e.target.value);
-            setKeyword(`'"${e.target.value}"'`),
+            setKeyword(e.target.value),
             console.log('keyword: ', keyword)
         )
     };
 
-    const search = () => {
+    const search = (e) => {
+        e.preventDefault();
         axios
-            .post("https://retirementhunt.xyz/search", JSON.stringify(keyword))
+            .post("https://retirementhunt.xyz/search", `search=${keyword}`)
             .then(response => {
-                console.log('response from quote search', response);
-                // const info = response.data.quotes;
-                // setQuotes(info);
+                console.log('response from quote search (response.data)', response.data);
+
+                // example response: 
+                // [{'id':9550, 'character': 'Homer Simpson', 'quote': 'Why you little'}]
+
+                setQuotes(response.data);
             })
             .catch(error => {
                 console.log('Error response from quote search function', error);
             });
     };
 
-    // .then(res => {
-    //     console.log(res);
-    //     return axiosWithAuth().get(`http://localhost:5000/api/colors/`)
-    //   })
-
     return (
         <div>
-            <H2> Search for a quote </H2>
+            <H2> Search for a Simpsons quote </H2>
             <form onSubmit={search}>
             <ProfileEdit>
                 <input
@@ -48,23 +46,21 @@ const QuoteList = props => {
             <MainButton>Search</MainButton>
             </ProfileEdit>
             </form>
-
-
+            <CardStyle>
+            {/* <div className="quoteContainer"> */}
             {quotes.map(quote => {
                 return (
-                    <Quote
-                        key={quote.id}
-                        line={quote.quote}
-                        episode={quote.episode}
-                        character={quote.character}
+                    <Quote 
+                    character={quote.character}
+                    id={quote.id}
+                    quote={quote.quote}
                     />
                 );
             })}
+            {/* </div> */}
+            </CardStyle>
         </div>
     )
 };
 
 export default QuoteList;
-
-
-

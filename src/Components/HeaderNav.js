@@ -18,7 +18,7 @@ export default function HeaderNav(props) {
             {localStorage.token && <Link to="/protected"><NavButton>Home</NavButton></Link>}
             {localStorage.token && <Link to="/protected/search"><NavButton>Search Quotes</NavButton></Link>}
             {localStorage.token && <Link to="/protected/profile"><NavButton>Profile</NavButton></Link>}
-            <Link to="/about"><NavButton>About Us</NavButton></Link>
+            <a href="https://simpsonsays.netlify.com/team2.html"><NavButton>About Us</NavButton></a>
             {localStorage.token && <Link to="/"> <NavButton onClick={logout}>Logout</NavButton></Link>}
         </HeaderButtonContainer>
     )
