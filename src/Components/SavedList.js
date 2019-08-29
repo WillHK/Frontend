@@ -5,7 +5,6 @@ import {H2} from './Styled/Styled'
 
 import Quote from './Quote'
 
-
 export default class SavedList extends Component {
   constructor(props) {
     super(props);
@@ -20,8 +19,6 @@ export default class SavedList extends Component {
     this.getData();
   }
 
-  
-
   getData = () => {
     axiosWithAuth()
       .get(`https://simpsons-says-nodejs.herokuapp.com/api/users/${this.state.userid}`) 
@@ -31,7 +28,7 @@ export default class SavedList extends Component {
           username: res.data.user.username,
           favorites: res.data.user.favorites 
         });
-        console.log(this.state);
+        console.log('state from savedList component: ', this.state);
       })
       .catch(err => console.log('error getting saved quotes', err.response));
   };
@@ -46,8 +43,7 @@ export default class SavedList extends Component {
             <Quote 
                 key={quote.id}
                 line={quote.quote} 
-                episode={quote.episode}
-                character={quote.character}
+                character={quote.character} 
             />
           );
         })}

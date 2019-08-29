@@ -22,7 +22,7 @@ input, label{
 body{
   background: radial-gradient(closest-side, #ffffff, #71d1fe);
   background-repeat: no-repeat;
-  height: 200vh;
+  height: 300vh;
   min-width: 900px;
 }
 img{
