@@ -62,8 +62,8 @@ font-size: 1.20rem;
 
 export const QuoteCard = styled.div`
 background-color: #ffffff;
-width: 15rem;
-height: 15rem;
+width: 20rem;
+height: 20rem;
 padding-top: 20px;
 margin: 20px;
 border-radius: 4px;
@@ -121,14 +121,12 @@ align-items: center;
 export const TrashSize = styled.img`
 height: 1.75rem;
 width: 1.75rem;
-position: relative;
 bottom: -60px;
 right: -90px;
 `
 export const SaveSize = styled.img`
 height: 1.75rem;
 width: 1.75rem;
-position: relative;
 bottom: -60px;
 right: -90px;
 `
