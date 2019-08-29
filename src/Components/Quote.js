@@ -8,7 +8,8 @@ const Quote = props => {
     let userid = localStorage.userid;
 
     function saveQuote(){
-        console.log('quote saved!');
+        console.log('saving quote!');
+        console.log('sending to post request', {quote_id: quote_id, user_favorites: userid});
         axiosWithAuth()
             .post('https://simpsons-says-nodejs.herokuapp.com/api/user/quotes', {quote_id: quote_id, user_favorites: userid})
             .then(res => {
