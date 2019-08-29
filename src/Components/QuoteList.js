@@ -1,7 +1,8 @@
 // import { Route, Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import { axiosWithAuth } from '../Utils/axiosWithAuth'
-import Quote from './Quote'
+import axios from 'axios';
+import { axiosWithAuth } from '../Utils/axiosWithAuth';
+import Quote from './Quote';
 import { MainButton, ProfileEdit, H2 } from "./Styled/Styled";
 
 
@@ -12,22 +13,21 @@ const QuoteList = props => {
     const handleChange = e => {
         return (
             //    console.log(`target value`, e.target.value);
-            setKeyword(e.target.value),
+            setKeyword(`'"${e.target.value}"'`),
             console.log('keyword: ', keyword)
         )
     };
 
     const search = () => {
-        axiosWithAuth()
-            .post("https://simpsons-says-nodejs.herokuapp.com/api/quotes", keyword)
-            .then()
+        axios
+            .post("https://retirementhunt.xyz/search", JSON.stringify(keyword))
             .then(response => {
-                console.log('response from get quote', response);
-                const info = response.data.quotes;
-                setQuotes(info);
+                console.log('response from quote search', response);
+                // const info = response.data.quotes;
+                // setQuotes(info);
             })
             .catch(error => {
-                console.log('Server Error', error);
+                console.log('Error response from quote search function', error);
             });
     };
 
@@ -37,7 +37,7 @@ const QuoteList = props => {
     //   })
 
     return (
-        <container>
+        <div>
             <H2> Search for a quote </H2>
             <form onSubmit={search}>
             <ProfileEdit>
@@ -60,7 +60,7 @@ const QuoteList = props => {
                     />
                 );
             })}
-        </container>
+        </div>
     )
 };
 
