@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import styled from 'styled-components';
-import { MainButton, FormDiv, H2, LoginMain, P, Img, ImageSize } from "./Styled/Styled";
+import { MainButton, FormDiv, H2, LoginMain, P } from "./Styled/Styled";
 // import SimpsonsFam from '../images/SimpsonsFam.png'
 
 
@@ -21,9 +20,9 @@ function Login (props) {
         axios
             .post('https://simpsons-says-nodejs.herokuapp.com/api/login', creds)
             .then(res => {
-                console.log(res);
+                console.log(`login response: `, res);
                 localStorage.setItem('token', res.data.token);
-                localStorage.setItem('userid', res.data.userid); // this may not be called userid -- check with backend or check console for res
+                localStorage.setItem('userid', res.data.user.id); // this may not be called userid -- check with backend or check console for res
                 setLoginStatus("Success!");
                 setCreds({
                     username: '',
@@ -72,7 +71,7 @@ function Login (props) {
 
             </form>
             
-            <img src = "https://i.ibb.co/Mf1vRQB/simpsons-PNG67.png" alt="simpsons family picture"/>
+            <img src = "https://i.ibb.co/Mf1vRQB/simpsons-PNG67.png" alt="simpsons family "/>
             </LoginMain>
         </>
     );

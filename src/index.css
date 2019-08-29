@@ -22,13 +22,12 @@ input, label{
 body{
   background: radial-gradient(closest-side, #ffffff, #71d1fe);
   background-repeat: no-repeat;
-  height: 100vh;
+  height: 200vh;
+  min-width: 900px;
 }
 img{
   width: 30%;
   height:30%;
-  /* position:absolute; */
-  /* padding-left: 10rem; */
 }
 p{
   margin: 0;

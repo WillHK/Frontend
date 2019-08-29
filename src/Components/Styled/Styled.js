@@ -106,3 +106,29 @@ display:flex;
 flex-direction: column;
 justify-content: space-evenly;
 align-items: center;`
+
+export const AvatarImg = styled.img`
+width: 7rem;
+`
+
+export const CardStyle = styled.div`
+display:flex;
+justify-content: space-evenly;
+flex-wrap: wrap;
+align-items: center;
+`
+
+export const TrashSize = styled.img`
+height: 1.75rem;
+width: 1.75rem;
+position: relative;
+bottom: -60px;
+right: -90px;
+`
+export const SaveSize = styled.img`
+height: 1.75rem;
+width: 1.75rem;
+position: relative;
+bottom: -60px;
+right: -90px;
+`

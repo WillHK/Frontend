@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { NavLink, Link } from 'react-router-dom';
 import { axiosWithAuth } from '../Utils/axiosWithAuth';
 import {H2} from './Styled/Styled'
 
@@ -13,6 +12,7 @@ export default class SavedList extends Component {
     this.state = {
         username:"",
         favorites: [],
+        userid: localStorage.userid
     }
   }
 
@@ -20,21 +20,20 @@ export default class SavedList extends Component {
     this.getData();
   }
 
-  // userid = localStorage.userid;
+  
 
   getData = () => {
     axiosWithAuth()
-      .get(`https://simpsons-says-nodejs.herokuapp.com/api/users`) // ${userid}
+      .get(`https://simpsons-says-nodejs.herokuapp.com/api/users/${this.state.userid}`) 
       .then(res => {
           console.log('response from get saved quotes: ', res);
-        // this.setState({
-        //   user: res.data.username,
-  
-        //   favorites: res.data.favorites //talk to be about savedQuotes endpoint
-        // });
-        
+        this.setState({
+          username: res.data.user.username,
+          favorites: res.data.user.favorites 
+        });
+        console.log(this.state);
       })
-      .catch(err => console.log(err.response));
+      .catch(err => console.log('error getting saved quotes', err.response));
   };
 
   render() {

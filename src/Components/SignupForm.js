@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
-import { MainButton, FormDiv, H2, Option, LoginMain, ImageContainer, Img, Select } from "./Styled/Styled";
+import { MainButton, FormDiv, H2, LoginMain, Img, Select } from "./Styled/Styled";
 
 export default function SignUpForm (props) {
 
@@ -25,11 +24,10 @@ export default function SignUpForm (props) {
             .post('https://simpsons-says-nodejs.herokuapp.com/api/register/', newCreds)
             .then(res => {
                 console.log("response from signup call: ", res);
-                // localStorage.setItem('token', res.data.payload);
-                // setCreds({
-                //     username: '',
-                //     password: ''
-                // });
+                setNewCreds({
+                    username: '',
+                    password: ''
+                });
                 props.history.push("/");
             })
             .catch(err => {
