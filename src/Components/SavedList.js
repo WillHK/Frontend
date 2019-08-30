@@ -31,7 +31,7 @@ export default class SavedList extends Component {
           username: res.data.user.username,
           favorites: res.data.user.favorites 
         });
-        console.log(this.state);
+        console.log('current state of SavedList component', this.state);
       })
       .catch(err => console.log('error getting saved quotes', err.response));
   };
@@ -45,8 +45,8 @@ export default class SavedList extends Component {
           return (
             <Quote 
                 key={quote.id}
-                line={quote.quote} 
-                episode={quote.episode}
+                id={quote.id}
+                quote={quote.quote} 
                 character={quote.character}
             />
           );
