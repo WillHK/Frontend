@@ -47,7 +47,6 @@ const QuoteList = props => {
             </ProfileEdit>
             </form>
             <CardStyle>
-            {/* <div className="quoteContainer"> */}
             {quotes.map(quote => {
                 return (
                     <Quote 
@@ -57,7 +56,6 @@ const QuoteList = props => {
                     />
                 );
             })}
-            {/* </div> */}
             </CardStyle>
         </div>
     )

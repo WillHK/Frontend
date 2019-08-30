@@ -1,5 +1,5 @@
 import React from "react";
-import { H2, QuoteCard, TrashSize, SaveSize } from "./Styled/Styled";
+import { H2, QuoteCard, TrashSize, SaveSize, CardButtonContainer } from "./Styled/Styled";
 import { axiosWithAuth } from '../Utils/axiosWithAuth';
 
 
@@ -39,9 +39,13 @@ const Quote = props => {
                 <H2>{props.character}:</H2>                
                 <H2>{`"${props.quote}"`}</H2>
                 {/* <H2> Episode: {props.episode}</H2> */}
+                </QuoteCard>
+                <CardButtonContainer>                
                 <div onClick={saveQuote}><i class="fas fa-save"></i></div>
                 <TrashSize onClick={deleteQuote} src='https://static.simpsonswiki.com/images/b/bb/Trash_Can_Tapped_Out.png' alt='trash can'/>
-            </QuoteCard>
+                </CardButtonContainer>                
+
+            
         </div>
     )
 }
