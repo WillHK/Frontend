@@ -26,17 +26,14 @@ export default function SignUpForm (props) {
                 console.log("response from signup call: ", res);
                 setNewCreds({
                     username: '',
-                    password: ''
+                    password: '',
+                    favChar: ''
                 });
                 props.history.push("/");
             })
             .catch(err => {
                 console.log(err);
                 setSignupStatus(`${err}`);
-                setNewCreds({
-                    username: '',
-                    password: ''
-                })
             });
     }
 

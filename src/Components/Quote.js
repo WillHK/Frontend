@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { H2, QuoteCard, TrashSize, SaveSize, CardButtonContainer } from "./Styled/Styled";
 import { axiosWithAuth } from '../Utils/axiosWithAuth';
 
@@ -6,6 +6,7 @@ import { axiosWithAuth } from '../Utils/axiosWithAuth';
 const Quote = props => {
     let quote_id = props.id;
     let userid = localStorage.userid;
+    let quotesPromises = [];
 
     function saveQuote(){
         console.log('saving quote!');
@@ -23,7 +24,7 @@ const Quote = props => {
     function deleteQuote(){
         console.log('quote removed from saved list!');
         axiosWithAuth()
-        .delete(`https://simpsons-says-nodejs.herokuapp.com/api/user/quotes/${quote_id}`)
+        .delete(`https://simpsons-says-nodejs.herokuapp.com/api/user/quotes/${userid}/${quote_id}`)
         .then(res => {
             console.log(`response from delete quote call: `, res)
         })
