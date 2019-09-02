@@ -38,11 +38,8 @@ const Quote = props => {
         `https://simpsons-says-nodejs.herokuapp.com/api/user/quotes/${userid}/${quote_id}`
       )
       .then(res => {
-        console.log(`response from delete quote call: `, res);
-        axiosWithAuth()
-          .get(`https://simpsons-says-nodejs.herokuapp.com/api/users/${userid}`)
-          .then(res => res.data)
-          .catch(err => err);
+        console.log(`response from delete quote call: `, res)
+          window.location.reload(true);
       })
       .catch(err => {
         console.log(`error deleting quote: `, err);
