@@ -39,7 +39,7 @@ const Quote = props => {
       )
       .then(res => {
         console.log(`response from delete quote call: `, res)
-          window.location.reload(true);
+         
       })
       .catch(err => {
         console.log(`error deleting quote: `, err);
@@ -55,7 +55,7 @@ const Quote = props => {
         {/* <H2> Episode: {props.episode}</H2> */}
       </QuoteCard>
       <CardButtonContainer>
-        <div onClick={saveQuote}>
+        <div onClick= {window.location.reload(true) && saveQuote}>
           <i class="fas fa-save"></i>
         </div>
         <TrashSize
