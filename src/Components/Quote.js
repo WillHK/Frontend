@@ -55,7 +55,7 @@ const Quote = props => {
         {/* <H2> Episode: {props.episode}</H2> */}
       </QuoteCard>
       <CardButtonContainer>
-        <div onClick= {window.location.reload(true) && saveQuote}>
+        <div onClick= {saveQuote}>
           <i class="fas fa-save"></i>
         </div>
         <TrashSize
