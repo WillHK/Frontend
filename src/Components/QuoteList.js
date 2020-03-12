@@ -20,7 +20,7 @@ const QuoteList = props => {
     const search = (e) => {
         e.preventDefault();
         axios
-            .post("https://retirementhunt.xyz/search", `search=${keyword}`)
+            .post("http://34.220.255.46:8000/search", `search=${keyword}`)
             .then(response => {
                 console.log('response from quote search (response.data)', response.data);
 

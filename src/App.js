@@ -14,11 +14,12 @@ function App() {
   return (
     <div className="App">
       <Route path="/" render={(props)=><HeaderNav {...props}/>} />
-      <PrivateRoute exact path='/protected' component={SavedList}/>
-      <PrivateRoute path='/protected/search' component={QuoteList} />
-      <PrivateRoute path='/protected/profile' component={Profile} />
-      <Route path='/signup' component={SignupForm} />
-      <Route exact path='/' component={Login} />
+      {/* <PrivateRoute exact path='/protected' component={SavedList}/> */}
+      {/* <PrivateRoute path='/protected/search' component={QuoteList} /> */}
+      {/* <PrivateRoute path='/protected/profile' component={Profile} /> */}
+      {/* <Route path='/signup' component={SignupForm} /> */}
+      <Route path="/search" component={QuoteList} />
+      <Route exact path='/' component={QuoteList} />
       
     </div> 
   );
